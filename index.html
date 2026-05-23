@@ -1,45 +1,600 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guan's Biography</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
-        p {
-            color: #555;
-            font-size: 16px;
-            margin: 15px 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guan — Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #faf8f4;
+      --paper: #f3f0ea;
+      --ink: #1a1916;
+      --ink-light: #5a574f;
+      --ink-muted: #9a9690;
+      --accent: #c17d4a;
+      --accent-light: #e8d5c0;
+      --border: #e2ddd5;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(250, 248, 244, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 4rem;
+    }
+
+    .hero-text { animation: fadeUp 0.9s ease both; }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      font-weight: 300;
+      max-width: 420px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--ink);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--border);
+      color: var(--ink-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .hero-image {
+      animation: fadeUp 0.9s 0.15s ease both;
+      position: relative;
+    }
+
+    .hero-image-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .hero-image-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-light) 0%, var(--paper) 100%);
+      z-index: 0;
+    }
+
+    .placeholder-portrait {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .portrait-initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .portrait-hint {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 1rem;
+    }
+
+    .hero-image-accent {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      width: 60%;
+      height: 60%;
+      border: 1px solid var(--accent-light);
+      z-index: -1;
+    }
+
+    .hero-stat-row {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      z-index: 2;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.85);
+      padding: 0.75rem 1rem;
+      backdrop-filter: blur(8px);
+      flex: 1;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--ink);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ── SECTION SHARED ── */
+    .section {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-label::after {
+      content: '';
+      height: 1px;
+      width: 3rem;
+      background: var(--accent-light);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .about-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-body p {
+      color: var(--ink-light);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+
+    .about-body p:last-child { margin-bottom: 0; }
+
+    .quote-block {
+      border-left: 2px solid var(--accent);
+      padding: 1rem 1.5rem;
+      margin: 0 0 1.75rem 0;
+      background: var(--paper);
+    }
+
+    .quote-block p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink) !important;
+      line-height: 1.6;
+    }
+
+    /* ── WHAT I DO chips ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--accent-light);
+      color: var(--accent);
+      background: transparent;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--ink);
+      padding: 7rem 3rem;
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-sub {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-block;
+      padding: 0.8rem 1.75rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      background: rgba(193, 125, 74, 0.1);
+    }
+
+    .contact-link.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .contact-link.primary:hover { background: #a86a38; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--ink-muted);
+      font-weight: 300;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 3rem;
+        gap: 2.5rem;
+      }
+
+      .hero-image { order: -1; max-width: 360px; margin: 0 auto; width: 100%; }
+      .hero-image-accent { display: none; }
+
+      .section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .contact-section { padding: 5rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-stat-row { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to my biography!</h1>
-        <p>This is Guan and I am trying to learn how to build web app and deploy on cloud.</p>
-        <p>I now want to update my website!</p>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Guan</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-label">Engineer in Singapore Public Service</span>
+      <h1 class="hero-name">Hi, I'm<br /><em>Guan</em></h1>
+      <p class="hero-tagline">I make technology work for people — building low-code and no-code solutions that empower public officers to do their best work, without the complexity.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+        <a href="#about" class="btn-secondary">Learn more</a>
+      </div>
     </div>
+
+    <div class="hero-image">
+      <div class="hero-image-frame">
+        <div class="placeholder-portrait">
+          <span class="portrait-initials">G</span>
+          <span class="portrait-hint">Your photo here</span>
+        </div>
+        <div class="hero-stat-row">
+          <div class="hero-stat">
+            <span class="stat-number">LCNC</span>
+            <span class="stat-label">Builder</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">Gov</span>
+            <span class="stat-label">Public Service SG</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image-accent"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="divider"></div>
+  <section id="about" class="section fade-in">
+    <div class="section-label">About me</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="about-heading">Building tools that <em>simplify</em> the work of public service</h2>
+      </div>
+      <div class="about-body">
+        <div class="quote-block">
+          <p>"The best technology is the kind that gets out of the way and lets people focus on what truly matters."</p>
+        </div>
+        <p>I'm Guan, an Engineer in the Singapore Public Service. My work sits at the intersection of technology and people — I build and develop low-code and no-code solutions that help public officers work more efficiently, without needing to write a single line of code.</p>
+        <p>I believe that great internal tools should feel effortless. Whether it's automating a repetitive workflow, digitising a paper process, or giving officers a dashboard that actually makes sense — I focus on creating solutions that people genuinely want to use.</p>
+        <p>I am proficient in Python, Tableau, Microsoft Power Platform and UiPath RPA. </p>
+        <p>Based in Singapore, I'm passionate about leveraging modern platforms to accelerate how the public sector delivers value to citizens.</p>
+        <p>Currently, I have an interest to learn to build pro-code solutions with the help of AI. I hope I can bring more values to the humankind in times to come.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <span class="contact-label">Get in touch</span>
+      <h2 class="contact-heading">Let's <em>connect</em></h2>
+      <p class="contact-sub">Interested in what I do? I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:ohguanguan.82@gmail.com" class="contact-link primary">Email</a>
+        <a href="https://linkedin.com/in/9g0h" class="contact-link">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Guan</span>
+    <span class="footer-copy">&copy; 2026 &mdash; All rights reserved</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
