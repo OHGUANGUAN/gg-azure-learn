@@ -1,2 +1,2 @@
 # gg-azure-learn
-Learn to deploy web on azure from git
+I am using git to deploy my website that I have vibe coded on VS code to vercel/azure.
